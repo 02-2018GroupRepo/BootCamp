@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class DrinkMachine extends VendingMachine {
+    private List<Product> items = new ArrayList<Product>();
+    private Product product;
+    private Map<String, Double> selectionPrice = new HashMap<String,Double>();
+    private String selection;
+    private double coin;
+
+
+    public DrinkMachine(){
+        items.add(new Product("A1", "Coke", "Can", .25, .75));
+        items.add(new Product("A2", "Diet Coke", "Can", .25, .75));
+        items.add(new Product("A3", "Dr.Pepper", "Can", .25, .75));
+        items.add(new Product("A4", "Diet Dr. Pepper", "Can", .25, .75));
+        items.add(new Product("A5", "Sprite", "Can", .25, .75));
+        items.add(new Product("A6", "Diet Sprite", "Can", .25, .75));
+    }
+    public void displayDrinkMachine() {
+        for (Product p : items) {
+            System.out.println(p.getId() + ", " + p.getName() + ", " + p.getDescription() + ", " + p.getRetailPrice());
+        }
+    }
+    public void insertCoin(double coin){
+       this.coin = coin;
+
+    }
+
+    public void dispenseItem(){
+        Iterator it = selectionPrice.entrySet().iterator();
+        while (it.hasNext()){
+            if(!selectionPrice.containsValue(coin)){
+                System.out.println("You did not insert enough money");
+            }else{
+                for(Product p : items){
+                    if(getSelection().equalsIgnoreCase(p.getId())) {
+
+                        System.out.println("Dispensing ... " + "\n" +
+                                p.getName() + "\n" +
+                                p.getDescription());
+                    }
+                }
+            }
+        }
+
+    }
+    public void makeSelection(String id){
+        this.selection = id;
+        for(Product p :items){
+            if(getSelection().equalsIgnoreCase(p.getId())){
+                selectionPrice.put(p.getId(), p.getRetailPrice());
+            }
+        }
+
+    }
+
+
+
+
+
+}

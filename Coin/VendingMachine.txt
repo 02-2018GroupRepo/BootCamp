@@ -1,0 +1,101 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class VendingMachine implements Machine {
+    private String companyName;
+    private String location;
+    private double coin;
+    private List<Product> products = new ArrayList<Product>();
+    private Operator operator;
+    private String selection;
+    private final double QUARTER = .25;
+    private final double DIME = .10;
+    private final double NICKEL = .05;
+    private Map<String, Double> selectedItem = new HashMap<String, Double>();
+
+
+
+    public VendingMachine(){}
+    public VendingMachine(Operator operator, String location){
+        this.operator = operator;
+        this.location = location;
+
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public double getCoin() {
+        return coin;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public Operator getOperator() {
+        return operator;
+    }
+
+    public void setProducts(String id, String name, String description, double wholesalePrice, double retailPrice) {
+        products.add(new Product(id, name, description, wholesalePrice, retailPrice));
+
+    }
+
+    @Override
+    public void displayCompanyName() {
+        System.out.println(getCompanyName()) ;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+
+    }
+
+
+//    public double insertCoin(double coin) {
+//
+//        double amount = coin;
+//        double quarters;
+//        double dimes;
+//        double nickles;
+//
+//        quarters = amount / QUARTER;
+//        amount = amount % QUARTER;
+//        dimes = amount / DIME;
+//        amount = amount % DIME;
+//        nickles = amount;
+//        return amount;
+//    }
+
+
+
+
+
+    public String getSelection() {
+        return selection;
+    }
+
+
+
+//    public void dispenseItem(){
+//        for(Product p : products){
+//            if(getSelection().equalsIgnoreCase(p.getId())) {
+//
+//                System.out.println("Dispensing ... " + "\n" +
+//                        p.getName() + "\n" +
+//                        p.getDescription());
+//            }
+//        }
+//    }
+
+}
